@@ -1,6 +1,9 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
+// Load validation
+const validateProfileInput = require('../../validation/profile');
+
 module.exports = function validateProfileInput(data) {
 
     const { errors, isValid } = validateProfileInput(req.body);
