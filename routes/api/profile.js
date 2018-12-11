@@ -3,6 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+// Load validation
+const validateProfileInput = require('../../validation/profile');
+
 // Load Profile model
 const Profile = require('../../models/Profile');
 
@@ -35,6 +38,13 @@ router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
 // @access  Private
 router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
 
+    const { errors, isValid } = validateProfileInput(req.body);
+
+    // Check Validation
+    if(!isValid){
+        return res.status(400).json(errors)
+    }
+
     // Get fields
     const profileFields = {};
 
@@ -61,7 +71,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     if(req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
     Profile.findOne({ user: req.user.id })
-        .then(profile){
+        .then(profile => {
             if(profile){
                 // Update
                 Profile.findOneAndUpdate(
@@ -86,7 +96,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
                             .then(profile => res.json(profile));
                     });
             }
-        }
+        });
 
 
 
