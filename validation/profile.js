@@ -1,17 +1,9 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
-// Load validation
-const validateProfileInput = require('../../validation/profile');
-
 module.exports = function validateProfileInput(data) {
 
-    const { errors, isValid } = validateProfileInput(req.body);
-
-    // Check Validation
-    if(!isValid){
-        return res.status(400).json(errors)
-    }
+    const errors = {};
 
     // Turn to string if empty
     data.handle = !isEmpty(data.handle) ? data.handle : '';
@@ -22,15 +14,15 @@ module.exports = function validateProfileInput(data) {
         errors.handle = 'Handle must be between 2 and 40 characters';
     }
 
-    if(!Validator.isEmpty(data.handle)){
+    if(Validator.isEmpty(data.handle)){
         errors.handle = 'Profile handle is required';
     }
 
-    if(!Validator.isEmpty(data.status)){
+    if(Validator.isEmpty(data.status)){
         errors.status = 'Status field is required';
     }
 
-    if(!Validator.isEmpty(data.skills)){
+    if(Validator.isEmpty(data.skills)){
         errors.skills = 'Skills field is required';
     }
 
