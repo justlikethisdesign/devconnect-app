@@ -21,7 +21,7 @@ const PostSchema = new Schema({
         {
             user: {
                 type: Schema.Types.ObjectId,
-                ref: users
+                ref: 'users'
             }
         }
     ],
@@ -29,7 +29,7 @@ const PostSchema = new Schema({
         {
             user: {
                 type: Schema.Types.ObjectId,
-                ref: users
+                ref: 'users'
             },
             text: {
                 type: String,
