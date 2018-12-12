@@ -6,6 +6,9 @@ const passport = require('passport');
 // Post model
 const Post = require('../../models/Post');
 
+// Profile model
+const Profile = require('../../models/Profile');
+
 // Validation
 const validatePostInput = require('../../validation/post');
 
@@ -59,5 +62,13 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
     newPost.save().then(post => res.json(post));
 });
+
+// @route   DELETE api/posts/:id
+// @desc    DELETE post by id
+// @access  Private
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOne()
+});
+
 
 module.exports = router;
