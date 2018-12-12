@@ -197,7 +197,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false}), (req
                 to: req.body.to,
                 current: req.body.current,
                 description: req.body.description
-            }
+            };
 
             // Add to experience array
             profile.experience.unshift(newExp);
@@ -229,8 +229,8 @@ router.post('/education', passport.authenticate('jwt', { session: false}), (req,
                 from: req.body.from,
                 to: req.body.to,
                 current: req.body.current,
-                description: req.body.description,
-            }
+                description: req.body.description
+            };
 
             // Add to experience array
             profile.education.unshift(newEdu);
