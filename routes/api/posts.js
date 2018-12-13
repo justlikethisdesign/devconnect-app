@@ -73,7 +73,8 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
                 .then(post => {
                     // Check for post owner
                     if(post.user.toString() !== req.user.id){
-                        return res.status(401).json({ notauthorized: 'User not authorized' });
+                        const errors = { notauthorized: 'User not authorized' };
+                        return res.status(401).json(errors);
                     }
 
                     // Delete
@@ -95,12 +96,46 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
                     // If a user has already liked the post
                     // Loop through likes, get all users, that have this user
                     // id, that have liked, check they exist or not
-                    if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0){
-                        return res.status(400).json({ alreadyliked: 'User already liked this post' });
-                    }
+                    if(post.likes.filter(like => like.user.toString() === req.user.id)
+                        .length > 0){
+                            const errors = { alreadyliked: 'User already liked this post' };
+                            return res.status(400).json(errors);
+                        }
 
                     // Add user id to likes array
                     post.likes.unshift({ user: req.user.id });
+
+                    post.save().then(post => res.json(post));
+                })
+                .catch(err => res.status(404).json({ postnotfound: 'No post found '}));
+        })
+
+});
+
+// @route   POST api/posts/unlike/:id
+// @desc    POST unlike post
+// @access  Private
+router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOne({ user: req.user.id })
+        .then(profile => {
+            Post.findById(req.params.id)
+                .then(post => {
+                    // If a user has already liked the post
+                    // Loop through likes, get all users, that have this user
+                    // id, that have liked, check they exist or not
+                    if(post.likes.filter(like => like.user.toString() === req.user.id)
+                        .length === 0){
+                            const errors = { notliked: 'User not yet liked post' };
+                            return res.status(400).json(errors);
+                        }
+
+                    // Get remove index
+                    const removeIndex = post.likes
+                        .map(item => item.user.toString())
+                        .indexOf(req.user.id);
+
+                    // Splice out of array
+                    post.likes.splice(removeIndex, 1);
 
                     post.save().then(post => res.json(post));
                 })
