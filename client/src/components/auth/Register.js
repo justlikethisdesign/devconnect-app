@@ -28,6 +28,7 @@ class Register extends Component {
                                         placeholder="Name"
                                         name="name"
                                         value={this.state.name}
+                                        onChange={}
                                         required
                                     />
                                 </div>
