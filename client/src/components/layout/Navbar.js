@@ -15,7 +15,7 @@ export default() => {
             <div className="collapse navbar-collapse" id="mobile-nav">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profiles"> 
+                  <Link className="nav-link" to="/profiles">
                       Developers
                   </Link>
                 </li>
@@ -28,7 +28,7 @@ export default() => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="login">
+                  <Link className="nav-link" to="/login">
                       Login
                   </Link>
                 </li>
