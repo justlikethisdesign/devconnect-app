@@ -103,4 +103,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 });
 
-export default connect(null, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);
