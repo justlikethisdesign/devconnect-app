@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import jwt_encode from 'jwt-encode';
+import setAuthToken from './utils/setAuthToken';
+import { SET_CURRENT_USER } from './actions/authActions';
+
 import { Provider } from 'react-redux';
 import store from './store';
 
