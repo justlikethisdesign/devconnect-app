@@ -20,11 +20,11 @@ export const registerUser = (userData, history) => dispatch => {
 // Login - get user token
 export const loginUser = (userData) => dispatch => {
     axios.post('/api/user/login', userData)
-        .then(res =>){
+        .then(res => {
             // Save to local storage
             const { token } = res.data;
             // Set token to local
-            localStorage.setItem('jwtToken' token);
+            localStorage.setItem('jwtToken', token);
             // Set token to auth header
             setAuthToken(token);
             // Decode token to get user data
