@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
+import Experience from './Experience';
+//import Education from './Education';
 
 class Dashboard extends Component {
 
@@ -36,7 +38,8 @@ class Dashboard extends Component {
                             </Link>
                         </p>
                         <ProfileActions />
-                        { /* TODO: EXP and Edu */ }
+                        <Experience experience={profile.experience} />
+
                         <div style={{marginBottom: '16px'}} />
                         <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete my account</button>
                     </div>
