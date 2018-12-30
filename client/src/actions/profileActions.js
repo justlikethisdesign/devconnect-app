@@ -51,7 +51,7 @@ export const clearCurrentProfile = () => {
 // Add Experence
 export const addExperience = (expData, history) => dispatch => {
     axios
-        .post('/api/profile/experence', expData)
+        .post('/api/profile/experience', expData)
         .then(res => history.push('/dashboard'))
         .catch(err =>
             dispatch({
