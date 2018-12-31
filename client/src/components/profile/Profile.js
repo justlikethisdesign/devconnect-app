@@ -7,8 +7,16 @@ import ProfileAbout from './ProfileAbout';
 import ProfileCreds from './ProfileCreds';
 import ProfileGithub from './ProfileGithub';
 import Spinner from '../common/Spinner';
+import { getProfileByHandle } from '../../actions/profileActions';
 
 class Profile extends React.Component {
+
+    componentDidMount() {
+        if(this.props.match.params.handle){
+            this.props.getProfileByHandle(this.props.match.params.handle);
+        }
+    }
+
     render () {
 
         return (
@@ -17,4 +25,12 @@ class Profile extends React.Component {
     }
 }
 
-export default connect()(Profile);
+Profile.propTypes = {
+    profile: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    profile: state.profile
+});
+
+export default connect(mapStateToProps)(Profile);
