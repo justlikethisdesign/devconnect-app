@@ -5,7 +5,7 @@ class ProfileCreds extends React.Component {
     render () {
         return (
             <div>
-                <h1>TODO: Profile Creds
+                <h1>TODO: Profile Creds</h1>
             </div>
         )
     }

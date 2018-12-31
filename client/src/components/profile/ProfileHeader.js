@@ -5,7 +5,7 @@ class ProfileHeader extends React.Component {
     render () {
         return (
             <div>
-                <h1>TODO: Profile Header
+                <h1>TODO: Profile Header</h1>
             </div>
         )
     }
