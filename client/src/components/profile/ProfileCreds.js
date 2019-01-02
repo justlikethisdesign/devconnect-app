@@ -16,13 +16,13 @@ class ProfileCreds extends React.Component {
                     {exp.to === null} ? ('now') : <Moment format="YYY/MM/DD">{exp.to}</Moment>
                 </p>
                 <p><strong>Position:</strong> {exp.title}</p>
-                {exp.location === '' ? null : (<p><span><strong>Location: </strong> {exp.location}</p>)}
-                {exp.description === '' ? null : (<p><span><strong>Description: </strong> {exp.description}</p>)}
+                {exp.location === '' ? null : (<p><strong>Location: </strong> {exp.location}</p>)}
+                {exp.description === '' ? null : (<p><strong>Description: </strong> {exp.description}</p>)}
             </li>
         ));
 
         // Make education items
-        const eduItems = education.map(exp => (
+        const eduItems = education.map(edu => (
             <li key={edu._id} className="list-group-item">
                 <h4>{edu.school}</h4>
                 <p>
@@ -31,7 +31,7 @@ class ProfileCreds extends React.Component {
                 </p>
                 <p><strong>Degree:</strong> {edu.degree}</p>
                 <p><strong>Field of study:</strong> {edu.fieldofstudy}</p>
-                {edu.description === '' ? null : (<p><span><strong>Description: </strong> {edu.description}</p>)}
+                {edu.description === '' ? null : (<p><strong>Description: </strong> {edu.description}</p>)}
             </li>
         ));
 
@@ -39,19 +39,19 @@ class ProfileCreds extends React.Component {
             <div className="row">
                 <div className="col-md-6">
                     <h3 className="text-center text-info">Experience</h3>
-                    {exp.items.length > 0 ? (
+                    {expItems.length > 0 ? (
                         <ul className="list-group">
-                            {exp.items}
+                            {expItems}
                         </ul>
                     ) : (
                         <p className="text-center">No experience listed</p>
                     )}
                 </div>
                 <div className="col-md-6">
-                    <h3 className="text-center text-info">Educatio</h3>
-                    {edu.items.length > 0 ? (
+                    <h3 className="text-center text-info">Education</h3>
+                    {eduItems.length > 0 ? (
                         <ul className="list-group">
-                            {edu.items}
+                            {eduItems}
                         </ul>
                     ) : (
                         <p className="text-center">No education listed</p>
