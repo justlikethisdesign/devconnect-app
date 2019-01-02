@@ -38,7 +38,7 @@ class Profile extends React.Component {
                     </div>
 
                     <ProfileHeader profile={profile}/>
-                    <ProfileAbout />
+                    <ProfileAbout profile={profile}/>
                     <ProfileCreds />
                     <ProfileGithub />
 
