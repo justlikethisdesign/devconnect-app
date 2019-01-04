@@ -13,7 +13,7 @@ class ProfileCreds extends React.Component {
                 <h4>{exp.company}</h4>
                 <p>
                     <Moment format="YYY/MM/DD">{exp.from}</Moment> -
-                    {exp.to === null} ? ('now') : <Moment format="YYY/MM/DD">{exp.to}</Moment>
+                    {exp.to === null ? ('now') : <Moment format="YYY/MM/DD">{exp.to}</Moment>}
                 </p>
                 <p><strong>Position:</strong> {exp.title}</p>
                 {exp.location === '' ? null : (<p><strong>Location: </strong> {exp.location}</p>)}
@@ -27,7 +27,7 @@ class ProfileCreds extends React.Component {
                 <h4>{edu.school}</h4>
                 <p>
                     <Moment format="YYY/MM/DD">{edu.from}</Moment> -
-                    {edu.to === null} ? ('now') : <Moment format="YYY/MM/DD">{edu.to}</Moment>
+                    {edu.to === null ? ('now') : <Moment format="YYY/MM/DD">{edu.to}</Moment>}
                 </p>
                 <p><strong>Degree:</strong> {edu.degree}</p>
                 <p><strong>Field of study:</strong> {edu.fieldofstudy}</p>
@@ -60,6 +60,11 @@ class ProfileCreds extends React.Component {
             </div>
         )
     }
+}
+
+ProfileCreds.propTypes = {
+    experience: PropTypes.array.isRequired,
+    education: PropTypes.array.isRequired
 }
 
 export default ProfileCreds;
