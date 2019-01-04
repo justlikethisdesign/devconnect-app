@@ -27,14 +27,15 @@ class CommentForm extends React.Component {
         e.preventDefault();
 
         const { user } = this.props.auth;
+        const { postId } = this.props;
 
-        const newPost = {
+        const newComment = {
             text: this.state.text,
             name: user.name,
             avatar: user.avatar
         };
 
-        this.props.addPost(newPost);
+        this.props.addComment(postId, newComment);
         this.setState({ text: '' });
     }
 
@@ -75,6 +76,7 @@ class CommentForm extends React.Component {
 CommentForm.propTypes = {
     addComment: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
+    postId: PropTypes.string.isRequired,
     errors: PropTypes.object.isRequired
 }
 
